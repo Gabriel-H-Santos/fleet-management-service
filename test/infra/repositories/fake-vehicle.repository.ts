@@ -25,6 +25,10 @@ export class FakeVehicleRepository implements VehicleRepository {
     return this.vehicles.find((v) => v.id === id) ?? null;
   }
 
+  async findByPlate(plate: string): Promise<Vehicle | null> {
+    return this.vehicles.find((v) => v.plate === plate) ?? null;
+  }
+
   async findAll(filters?: VehicleFilters): Promise<Vehicle[]> {
     let result = [...this.vehicles];
 

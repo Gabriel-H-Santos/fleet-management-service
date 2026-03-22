@@ -8,6 +8,7 @@ import {
 } from '@domain/use-cases/vehicle/create-vehicle.use-case';
 import { createVehicleSchema } from '@application/dtos/vehicle/create-vehicle.dto';
 import { validateOrThrow } from '@application/helpers/validation.helper';
+import { Conflict } from '@infra/protocols/http/exceptions/conflict.exception';
 
 @injectable()
 export class CreateVehicleUseCaseImpl implements CreateVehicleUseCase {
@@ -18,6 +19,12 @@ export class CreateVehicleUseCaseImpl implements CreateVehicleUseCase {
 
   async createVehicle(input: CreateVehicleInput): Promise<CreateVehicleOutput> {
     const data = validateOrThrow(createVehicleSchema, input);
+
+    const existing = await this.vehicleRepository.findByPlate(data.plate);
+
+    if (existing) {
+      throw new Conflict(`Vehicle with plate ${data.plate} already exists`, 'VEHICLE_PLATE_CONFLICT');
+    }
 
     const vehicle = await this.vehicleRepository.create(
       Vehicle.create({

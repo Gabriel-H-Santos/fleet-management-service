@@ -8,6 +8,7 @@ import {
 import { updateVehicleSchema } from '@application/dtos/vehicle/update-vehicle.dto';
 import { validateOrThrow } from '@application/helpers/validation.helper';
 import { NotFound } from '@infra/protocols/http/exceptions/not-found.exception';
+import { Conflict } from '@infra/protocols/http/exceptions/conflict.exception';
 
 @injectable()
 export class UpdateVehicleUseCaseImpl implements UpdateVehicleUseCase {
@@ -24,6 +25,13 @@ export class UpdateVehicleUseCaseImpl implements UpdateVehicleUseCase {
 
     if (!vehicle) {
       throw new NotFound(`Vehicle with id ${id} not found`, 'VEHICLE_NOT_FOUND');
+    }
+
+    if (data.plate !== undefined && data.plate !== vehicle.plate) {
+      const existing = await this.vehicleRepository.findByPlate(data.plate);
+      if (existing) {
+        throw new Conflict(`Vehicle with plate ${data.plate} already exists`, 'VEHICLE_PLATE_CONFLICT');
+      }
     }
 
     const updated: Partial<typeof vehicle> = {};
