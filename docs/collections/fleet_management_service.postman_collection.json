@@ -1,0 +1,1965 @@
+{
+  "info": {
+    "_postman_id": "c45e4d55-bebe-4ee6-9ae8-939a48bd5569",
+    "name": "Fleet Management Service Copy",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "5059600"
+  },
+  "item": [
+    {
+      "name": "Vehicles",
+      "item": [
+        {
+          "name": "Add a vehicle",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {\r",
+                  "    let response = pm.response.json();\r",
+                  "    pm.collectionVariables.set(\"vehicle_id\", response.id);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"plate\": \"ABC1234\",\r\n    \"color\": \"Red\",\r\n    \"brand\": \"Toyota\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/vehicles",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "vehicles"
+              ]
+            },
+            "description": "Creates a new vehicle in the system. The plate must be unique — a duplicate plate returns 409 Conflict."
+          },
+          "response": [
+            {
+              "name": "201",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"plate\": \"ABC1234\",\r\n    \"color\": \"Red\",\r\n    \"brand\": \"Toyota\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/vehicles",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicles"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "133"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"85-7zgmXNlhDo5wG/6PvGVLpXytk7w\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 22 Mar 2026 16:17:19 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"117789b7-79d4-4e55-bd9e-b5e214bca9f6\",\n    \"plate\": \"ABC1234\",\n    \"color\": \"Red\",\n    \"brand\": \"Toyota\",\n    \"createdAt\": \"2026-03-22T16:17:19.074Z\"\n}"
+            },
+            {
+              "name": "400",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"plate\": \"ABC1234\",\r\n    \"color\": \"Red\",\r\n    \"brand\": \"Toyota\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/vehicles",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicles"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\"name\":\"BadRequest\",\"message\":\"Validation error\",\"errorCode\":\"VALIDATION_ERROR\",\"statusCode\":400,\"timestamp\":\"2026-03-22T16:00:00.000Z\"}"
+            },
+            {
+              "name": "409",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"plate\": \"ABC1234\",\r\n    \"color\": \"Red\",\r\n    \"brand\": \"Toyota\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/vehicles",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicles"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "166"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"a6-R+Qs2BXJCfEZ8OG45uji3VqC/1E\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 22 Mar 2026 16:34:43 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"name\": \"Conflict\",\n    \"message\": \"Vehicle with plate ABC1234 already exists\",\n    \"errorCode\": \"VEHICLE_PLATE_CONFLICT\",\n    \"statusCode\": 409,\n    \"timestamp\": \"2026-03-22T16:34:43.907Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "List of vehicles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "vehicles"
+              ],
+              "query": [
+                {
+                  "key": "color",
+                  "value": "Red",
+                  "disabled": true
+                },
+                {
+                  "key": "brand",
+                  "value": "Toyota",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Returns all registered vehicles. Supports optional filtering by `color` and `brand` as query parameters (case-insensitive partial match)."
+          },
+          "response": [
+            {
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/vehicles",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicles"
+                  ],
+                  "query": [
+                    {
+                      "key": "color",
+                      "value": "Red",
+                      "disabled": true
+                    },
+                    {
+                      "key": "brand",
+                      "value": "Toyota",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "174"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"ae-0Hrl0lccCQif5DVvwC1jcHl2z0w\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 22 Mar 2026 16:17:37 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": \"117789b7-79d4-4e55-bd9e-b5e214bca9f6\",\n        \"plate\": \"ABC1234\",\n        \"color\": \"Red\",\n        \"brand\": \"Toyota\",\n        \"createdAt\": \"2026-03-22T16:17:19.074Z\",\n        \"updatedAt\": \"2026-03-22T16:17:19.074Z\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get a vehicle by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "vehicles",
+                "{{vehicle_id}}"
+              ]
+            },
+            "description": "Returns a single vehicle by its unique identifier. Returns 404 if the vehicle does not exist."
+          },
+          "response": [
+            {
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicles",
+                    "{{vehicle_id}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "172"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"ac-qnjRjdyM9TdkPhcQ1kJUizAAZZ4\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 22 Mar 2026 16:17:49 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"117789b7-79d4-4e55-bd9e-b5e214bca9f6\",\n    \"plate\": \"ABC1234\",\n    \"color\": \"Red\",\n    \"brand\": \"Toyota\",\n    \"createdAt\": \"2026-03-22T16:17:19.074Z\",\n    \"updatedAt\": \"2026-03-22T16:17:19.074Z\"\n}"
+            },
+            {
+              "name": "404",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/vehicles/WRONG_ID",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicles",
+                    "WRONG_ID"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "154"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"9a-E/V7WPFIio377HLGsUtbbqIG8Fc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 22 Mar 2026 16:19:27 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"name\": \"NotFound\",\n    \"message\": \"Vehicle with id WRONG_ID not found\",\n    \"errorCode\": \"VEHICLE_NOT_FOUND\",\n    \"statusCode\": 404,\n    \"timestamp\": \"2026-03-22T16:19:27.110Z\"\n}"
+            }
+          ]
+        },
+        {
+          "name": "Update a vehicle",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"color\": \"Blue\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "vehicles",
+                "{{vehicle_id}}"
+              ]
+            },
+            "description": "Partially updates a vehicle. All fields (plate, color, brand) are optional. Updating to a plate already in use by another vehicle returns 409 Conflict."
+          },
+          "response": [
+            {
+              "name": "200",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"color\": \"Blue\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicles",
+                    "{{vehicle_id}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "134"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"86-iUBAZn+GKsBo8PUlQzIh2XirroQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 22 Mar 2026 16:21:01 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"117789b7-79d4-4e55-bd9e-b5e214bca9f6\",\n    \"plate\": \"ABC1234\",\n    \"color\": \"Blue\",\n    \"brand\": \"Toyota\",\n    \"updatedAt\": \"2026-03-22T16:21:01.953Z\"\n}"
+            },
+            {
+              "name": "404",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"color\": \"Blue\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicles",
+                    "{{vehicle_id}}"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\"name\":\"NotFound\",\"message\":\"Vehicle with id {{vehicle_id}} not found\",\"errorCode\":\"VEHICLE_NOT_FOUND\",\"statusCode\":404,\"timestamp\":\"2026-03-22T16:00:00.000Z\"}"
+            },
+            {
+              "name": "409",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"color\": \"Blue\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicles",
+                    "{{vehicle_id}}"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\"name\":\"Conflict\",\"message\":\"Vehicle with plate ABC1234 already exists\",\"errorCode\":\"VEHICLE_PLATE_CONFLICT\",\"statusCode\":409,\"timestamp\":\"2026-03-22T16:00:00.000Z\"}"
+            }
+          ]
+        },
+        {
+          "name": "Delete a vehicle",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "vehicles",
+                "{{vehicle_id}}"
+              ]
+            },
+            "description": "Removes a vehicle from the system by its unique identifier. Returns 404 if the vehicle does not exist."
+          },
+          "response": [
+            {
+              "name": "204",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicles",
+                    "{{vehicle_id}}"
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 22 Mar 2026 16:21:40 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": ""
+            },
+            {
+              "name": "404",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/vehicles/{{vehicle_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicles",
+                    "{{vehicle_id}}"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\"name\":\"NotFound\",\"message\":\"Vehicle with id {{vehicle_id}} not found\",\"errorCode\":\"VEHICLE_NOT_FOUND\",\"statusCode\":404,\"timestamp\":\"2026-03-22T16:00:00.000Z\"}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Drivers",
+      "item": [
+        {
+          "name": "Add a driver",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {\r",
+                  "    let response = pm.response.json();\r",
+                  "    pm.collectionVariables.set(\"driver_id\", response.id);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Gabriel Santos\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/drivers",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "drivers"
+              ]
+            },
+            "description": "Creates a new driver in the system. Only the `name` field is required."
+          },
+          "response": [
+            {
+              "name": "201",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Gabriel Santos\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/drivers",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "drivers"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "108"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"6c-OMKpiukoyPigIrnh3o6Ksd2rLHk\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 22 Mar 2026 16:29:00 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"9d8d1762-21f9-4e82-a8b0-1979f64f39cf\",\n    \"name\": \"Gabriel Santos\",\n    \"createdAt\": \"2026-03-22T16:29:00.852Z\"\n}"
+            },
+            {
+              "name": "400",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Gabriel Santos\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/drivers",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "drivers"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\"name\":\"BadRequest\",\"message\":\"Validation error\",\"errorCode\":\"VALIDATION_ERROR\",\"statusCode\":400,\"timestamp\":\"2026-03-22T16:00:00.000Z\"}"
+            }
+          ]
+        },
+        {
+          "name": "List of drivers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/drivers",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "drivers"
+              ],
+              "query": [
+                {
+                  "key": "name",
+                  "value": "john",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Returns all registered drivers. Supports optional filtering by `name` as a query parameter (case-insensitive partial match)."
+          },
+          "response": [
+            {
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/drivers",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "drivers"
+                  ],
+                  "query": [
+                    {
+                      "key": "name",
+                      "value": "john",
+                      "disabled": true
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "149"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"95-VisDwzyO4gA7iKf279LMVP7Kazc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 22 Mar 2026 16:29:21 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": \"9d8d1762-21f9-4e82-a8b0-1979f64f39cf\",\n        \"name\": \"Gabriel Santos\",\n        \"createdAt\": \"2026-03-22T16:29:00.852Z\",\n        \"updatedAt\": \"2026-03-22T16:29:00.852Z\"\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Get a driver by id",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/drivers/{{driver_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "drivers",
+                "{{driver_id}}"
+              ]
+            },
+            "description": "Returns a single driver by its unique identifier. Returns 404 if the driver does not exist."
+          },
+          "response": [
+            {
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/drivers/{{driver_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "drivers",
+                    "{{driver_id}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "147"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"93-z9Xl/xrBEVn5RO9sHBaA7/Z+Iag\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 22 Mar 2026 16:29:35 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"9d8d1762-21f9-4e82-a8b0-1979f64f39cf\",\n    \"name\": \"Gabriel Santos\",\n    \"createdAt\": \"2026-03-22T16:29:00.852Z\",\n    \"updatedAt\": \"2026-03-22T16:29:00.852Z\"\n}"
+            },
+            {
+              "name": "404",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/drivers/{{driver_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "drivers",
+                    "{{driver_id}}"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\"name\":\"NotFound\",\"message\":\"Driver with id {{driver_id}} not found\",\"errorCode\":\"DRIVER_NOT_FOUND\",\"statusCode\":404,\"timestamp\":\"2026-03-22T16:00:00.000Z\"}"
+            }
+          ]
+        },
+        {
+          "name": "Update a driver",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Gabriel H. Santos\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/drivers/{{driver_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "drivers",
+                "{{driver_id}}"
+              ]
+            },
+            "description": "Partially updates a driver. Only the `name` field is supported."
+          },
+          "response": [
+            {
+              "name": "200",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Gabriel H. Santos\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/drivers/{{driver_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "drivers",
+                    "{{driver_id}}"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "111"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"6f-hz5yWd+WLYVjJt5Aovo7+8acrrE\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 22 Mar 2026 16:30:04 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"9d8d1762-21f9-4e82-a8b0-1979f64f39cf\",\n    \"name\": \"Gabriel H. Santos\",\n    \"updatedAt\": \"2026-03-22T16:30:04.465Z\"\n}"
+            },
+            {
+              "name": "400",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Gabriel H. Santos\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/drivers/{{driver_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "drivers",
+                    "{{driver_id}}"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\"name\":\"BadRequest\",\"message\":\"Validation error\",\"errorCode\":\"VALIDATION_ERROR\",\"statusCode\":400,\"timestamp\":\"2026-03-22T16:00:00.000Z\"}"
+            },
+            {
+              "name": "404",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"name\": \"Gabriel H. Santos\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/drivers/{{driver_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "drivers",
+                    "{{driver_id}}"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\"name\":\"NotFound\",\"message\":\"Driver with id {{driver_id}} not found\",\"errorCode\":\"DRIVER_NOT_FOUND\",\"statusCode\":404,\"timestamp\":\"2026-03-22T16:00:00.000Z\"}"
+            }
+          ]
+        },
+        {
+          "name": "Delete a driver",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/drivers/{{driver_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "drivers",
+                "{{driver_id}}"
+              ]
+            },
+            "description": "Removes a driver from the system by its unique identifier. Returns 404 if the driver does not exist."
+          },
+          "response": [
+            {
+              "name": "204",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/drivers/{{driver_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "drivers",
+                    "{{driver_id}}"
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 22 Mar 2026 16:30:21 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": ""
+            },
+            {
+              "name": "404",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/drivers/{{driver_id}}",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "drivers",
+                    "{{driver_id}}"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\"name\":\"NotFound\",\"message\":\"Driver with id {{driver_id}} not found\",\"errorCode\":\"DRIVER_NOT_FOUND\",\"statusCode\":404,\"timestamp\":\"2026-03-22T16:00:00.000Z\"}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Vehicle Usages",
+      "item": [
+        {
+          "name": "Add a vehicle usage",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "if (pm.response.code === 201) {\r",
+                  "    let response = pm.response.json();\r",
+                  "    pm.collectionVariables.set(\"vehicle_usage_id\", response.id);\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"vehicleId\": \"{{vehicle_id}}\",\r\n    \"driverId\": \"{{driver_id}}\",\r\n    \"reason\": \"Travel\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/vehicle-usages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "vehicle-usages"
+              ]
+            },
+            "description": "Creates a vehicle usage record, assigning a driver to a vehicle with a start date and reason. Business rules: a vehicle can only be in use by one driver at a time (409 Conflict), and a driver cannot use more than one vehicle at a time (409 Conflict)."
+          },
+          "response": [
+            {
+              "name": "201",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"vehicleId\": \"{{vehicle_id}}\",\r\n    \"driverId\": \"{{driver_id}}\",\r\n    \"reason\": \"Travel\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/vehicle-usages",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicle-usages"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "218"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"da-fEg6H313NWZG6UDk7VjopF2z584\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 22 Mar 2026 16:37:20 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"705a7b24-7612-4bd7-9e39-e58938712825\",\n    \"vehicleId\": \"15d99105-2174-4b34-acb1-c356eff34b8c\",\n    \"driverId\": \"dafe5d0e-c9ac-4ff5-845a-d13f287f79c2\",\n    \"reason\": \"Travel\",\n    \"startDate\": \"2026-03-22T16:37:20.866Z\",\n    \"endDate\": null\n}"
+            },
+            {
+              "name": "409",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"vehicleId\": \"{{vehicle_id}}\",\r\n    \"driverId\": \"{{driver_id}}\",\r\n    \"reason\": \"Travel\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/vehicle-usages",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicle-usages"
+                  ]
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "195"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"c3-CMr5BvOBCMRfGIi091eKdlYXu7E\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 22 Mar 2026 16:37:52 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"name\": \"Conflict\",\n    \"message\": \"Vehicle with id 15d99105-2174-4b34-acb1-c356eff34b8c is already in use\",\n    \"errorCode\": \"VEHICLE_ALREADY_IN_USE\",\n    \"statusCode\": 409,\n    \"timestamp\": \"2026-03-22T16:37:52.971Z\"\n}"
+            },
+            {
+              "name": "400",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"vehicleId\": \"{{vehicle_id}}\",\r\n    \"driverId\": \"{{driver_id}}\",\r\n    \"reason\": \"Travel\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/vehicle-usages",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicle-usages"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\"name\":\"BadRequest\",\"message\":\"Validation error\",\"errorCode\":\"VALIDATION_ERROR\",\"statusCode\":400,\"timestamp\":\"2026-03-22T16:00:00.000Z\"}"
+            },
+            {
+              "name": "404 — Vehicle not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"vehicleId\": \"{{vehicle_id}}\",\r\n    \"driverId\": \"{{driver_id}}\",\r\n    \"reason\": \"Travel\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/vehicle-usages",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicle-usages"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\"name\":\"NotFound\",\"message\":\"Vehicle with id {{vehicle_id}} not found\",\"errorCode\":\"VEHICLE_NOT_FOUND\",\"statusCode\":404,\"timestamp\":\"2026-03-22T16:00:00.000Z\"}"
+            },
+            {
+              "name": "404 — Driver not found",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\r\n    \"vehicleId\": \"{{vehicle_id}}\",\r\n    \"driverId\": \"{{driver_id}}\",\r\n    \"reason\": \"Travel\"\r\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{base_url}}/api/vehicle-usages",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicle-usages"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\"name\":\"NotFound\",\"message\":\"Driver with id {{driver_id}} not found\",\"errorCode\":\"DRIVER_NOT_FOUND\",\"statusCode\":404,\"timestamp\":\"2026-03-22T16:00:00.000Z\"}"
+            }
+          ]
+        },
+        {
+          "name": "List of vehicles usages",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicle-usages",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "vehicle-usages"
+              ]
+            },
+            "description": "Returns all vehicle usage records, including driver and vehicle information."
+          },
+          "response": [
+            {
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/vehicle-usages",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicle-usages"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "303"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"12f-FlnmqC4USEV2S8rmHT/9BEHFJgw\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 22 Mar 2026 16:38:10 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "[\n    {\n        \"id\": \"705a7b24-7612-4bd7-9e39-e58938712825\",\n        \"reason\": \"Travel\",\n        \"startDate\": \"2026-03-22T16:37:20.866Z\",\n        \"endDate\": null,\n        \"driver\": {\n            \"id\": \"dafe5d0e-c9ac-4ff5-845a-d13f287f79c2\",\n            \"name\": \"Gabriel Santos\"\n        },\n        \"vehicle\": {\n            \"id\": \"15d99105-2174-4b34-acb1-c356eff34b8c\",\n            \"plate\": \"ABC1234\",\n            \"color\": \"Red\",\n            \"brand\": \"Toyota\"\n        }\n    }\n]"
+            }
+          ]
+        },
+        {
+          "name": "Finish a vehicle usage",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/vehicle-usages/{{vehicle_usage_id}}/finish",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "vehicle-usages",
+                "{{vehicle_usage_id}}",
+                "finish"
+              ]
+            },
+            "description": "Marks an active vehicle usage as finished by setting the end date to the current timestamp. Returns 422 if the usage has already been finished."
+          },
+          "response": [
+            {
+              "name": "200",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/vehicle-usages/{{vehicle_usage_id}}/finish",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicle-usages",
+                    "{{vehicle_usage_id}}",
+                    "finish"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "240"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"f0-Vro5Awb/grw4e3MCUWcr8aC5qQQ\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 22 Mar 2026 16:38:33 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"id\": \"705a7b24-7612-4bd7-9e39-e58938712825\",\n    \"vehicleId\": \"15d99105-2174-4b34-acb1-c356eff34b8c\",\n    \"driverId\": \"dafe5d0e-c9ac-4ff5-845a-d13f287f79c2\",\n    \"reason\": \"Travel\",\n    \"startDate\": \"2026-03-22T16:37:20.866Z\",\n    \"endDate\": \"2026-03-22T16:38:33.877Z\"\n}"
+            },
+            {
+              "name": "404",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/vehicle-usages/{{vehicle_usage_id}}/finish",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicle-usages",
+                    "{{vehicle_usage_id}}",
+                    "finish"
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                }
+              ],
+              "cookie": [],
+              "body": "{\"name\":\"NotFound\",\"message\":\"Vehicle usage with id {{vehicle_usage_id}} not found\",\"errorCode\":\"VEHICLE_USAGE_NOT_FOUND\",\"statusCode\":404,\"timestamp\":\"2026-03-22T16:00:00.000Z\"}"
+            },
+            {
+              "name": "422",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/api/vehicle-usages/{{vehicle_usage_id}}/finish",
+                  "host": [
+                    "{{base_url}}"
+                  ],
+                  "path": [
+                    "api",
+                    "vehicle-usages",
+                    "{{vehicle_usage_id}}",
+                    "finish"
+                  ]
+                }
+              },
+              "status": "Unprocessable Content",
+              "code": 422,
+              "_postman_previewlanguage": "Text",
+              "header": [
+                {
+                  "key": "X-Powered-By",
+                  "value": "Express"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json; charset=utf-8"
+                },
+                {
+                  "key": "Content-Length",
+                  "value": "213"
+                },
+                {
+                  "key": "ETag",
+                  "value": "W/\"d5-Pg4xiwD7eOphQLt8B43BPPrEBXc\""
+                },
+                {
+                  "key": "Date",
+                  "value": "Sun, 22 Mar 2026 16:38:50 GMT"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Keep-Alive",
+                  "value": "timeout=5"
+                }
+              ],
+              "cookie": [
+                {
+                  "expires": "Invalid Date",
+                  "domain": "",
+                  "path": ""
+                }
+              ],
+              "body": "{\n    \"name\": \"UnprocessableContent\",\n    \"message\": \"Vehicle usage with id 705a7b24-7612-4bd7-9e39-e58938712825 is already finished\",\n    \"errorCode\": \"VEHICLE_USAGE_ALREADY_FINISHED\",\n    \"statusCode\": 422,\n    \"timestamp\": \"2026-03-22T16:38:50.176Z\"\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": ""
+    },
+    {
+      "key": "vehicle_id",
+      "value": ""
+    },
+    {
+      "key": "driver_id",
+      "value": ""
+    },
+    {
+      "key": "vehicle_usage_id",
+      "value": ""
+    }
+  ]
+}
