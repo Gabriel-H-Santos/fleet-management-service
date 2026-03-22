@@ -2,7 +2,7 @@ import { FinishVehicleUsageUseCaseImpl } from '@application/use-cases/vehicle-us
 import { FakeVehicleUsageRepository } from '@test/infra/repositories/fake-vehicle-usage.repository';
 import { vehicleUsageFactory } from '@factories/vehicle-usage.factory';
 import { NotFound } from '@infra/protocols/http/exceptions/not-found.exception';
-import { BadRequest } from '@infra/protocols/http/exceptions/bad-request.exception';
+import { UnprocessableContent } from '@infra/protocols/http/exceptions/unprocessable-content.exception';
 
 describe('FinishVehicleUsageUseCase', () => {
   let useCase: FinishVehicleUsageUseCaseImpl;
@@ -36,13 +36,13 @@ describe('FinishVehicleUsageUseCase', () => {
       ).rejects.toThrow(NotFound);
     });
 
-    it('should throw BadRequest when usage is already finished', async () => {
+    it('should throw UnprocessableContent when usage is already finished', async () => {
       const usage = vehicleUsageFactory.build({ endDate: new Date() });
       vehicleUsageRepository.seed(usage);
 
       await expect(
         useCase.finishUsage({ id: usage.id }),
-      ).rejects.toThrow(BadRequest);
+      ).rejects.toThrow(UnprocessableContent);
     });
   });
 });

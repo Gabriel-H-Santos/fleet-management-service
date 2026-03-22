@@ -6,7 +6,7 @@ import {
   FinishVehicleUsageOutput,
 } from '@domain/use-cases/vehicle-usage/finish-vehicle-usage.use-case';
 import { NotFound } from '@infra/protocols/http/exceptions/not-found.exception';
-import { BadRequest } from '@infra/protocols/http/exceptions/bad-request.exception';
+import { UnprocessableContent } from '@infra/protocols/http/exceptions/unprocessable-content.exception';
 
 @injectable()
 export class FinishVehicleUsageUseCaseImpl implements FinishVehicleUsageUseCase {
@@ -26,7 +26,7 @@ export class FinishVehicleUsageUseCaseImpl implements FinishVehicleUsageUseCase 
     }
 
     if (usage.endDate !== null) {
-      throw new BadRequest(
+      throw new UnprocessableContent(
         `Vehicle usage with id ${input.id} is already finished`,
         'VEHICLE_USAGE_ALREADY_FINISHED',
       );
